@@ -4,18 +4,71 @@ using System.Linq;
 using NPOI.SS.UserModel;
 using NetDiff;
 using SKCore.Collection;
+using NPOI.SS.Formula.Functions;
 
 namespace ExcelMerge
 {
     public class ExcelSheet
     {
         public SortedDictionary<int, ExcelRow> Rows { get; private set; }
-
+        private SortedDictionary<int, ExcelColumn> Columns { get; set; }
+        public int MaxColumnCount { get; private set; }
         public ExcelSheet()
         {
             Rows = new SortedDictionary<int, ExcelRow>();
+            Columns = new SortedDictionary<int, ExcelColumn>();
         }
-
+        public ExcelColumn GetColumn(int index)
+        {
+            if (Columns.ContainsKey(index))
+                return Columns[index];
+            else
+            {
+                var column = new ExcelColumn();
+                for (int i = 0; i < Rows.Count; i++)
+                {
+                    var cells = Rows[i].Cells;
+                    if (cells.Count > index)
+                        column.Cells.Add(cells[index]);
+                    else
+                        column.Cells.Add(new ExcelCell(string.Empty, index, i));
+                }
+                Columns.Add(index, column);
+                return column;
+            }
+        }
+        public void InsertColumn(int index, List<int> newInsertedRows, ExcelColumn column)
+        {
+            int insertedRowCount = 0;
+            foreach (var row in Rows)
+            {
+                var cells = row.Value.Cells;
+                if (newInsertedRows.Contains(row.Key))
+                {
+                    cells.Add(new ExcelCell(string.Empty, cells.Count, row.Key));
+                    insertedRowCount++;
+                    continue;
+                }
+                if (cells.Count > index)
+                    row.Value.Cells.Insert(index,
+                        column.Cells[row.Key - insertedRowCount]);
+                else
+                {
+                    while (cells.Count <= index)
+                    {
+                        cells.Add(new ExcelCell(string.Empty, cells.Count, row.Key));
+                    }
+                }
+                // row.Value.Cells.Insert(index,
+                //     new ExcelCell(string.Empty, index, row.Key));
+            }
+            MaxColumnCount += 1;
+        }
+        public void InsertRow(int index, ExcelRow row)
+        {
+            Rows.Add(index, row);
+            MaxColumnCount = Math.Max(row.Cells.Count(), MaxColumnCount);
+        }
         public static ExcelSheet Create(ISheet srcSheet, ExcelSheetReadConfig config)
         {
             var rows = ExcelReader.Read(srcSheet);
@@ -115,6 +168,7 @@ namespace ExcelMerge
             foreach (var row in rows)
             {
                 sheet.Rows.Add(row.Index, row);
+                sheet.MaxColumnCount = Math.Max(row.Cells.Count(), sheet.MaxColumnCount);
             }
 
             return sheet;
@@ -185,8 +239,9 @@ namespace ExcelMerge
             }
 
             var sheetDiff = new ExcelSheetDiff();
+            foreach (var column in columnStatusMap)
+                sheetDiff.SetColumnStatus(column.Key, column.Value);
             DiffCells(resultArray, sheetDiff, columnStatusMap);
-
             return sheetDiff;
         }
 

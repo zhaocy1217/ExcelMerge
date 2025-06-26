@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-
+using NetDiff;
 namespace ExcelMerge
 {
     public class ExcelRowDiff
@@ -21,7 +21,10 @@ namespace ExcelMerge
 
             return cell;
         }
-
+        public bool IsModifiedOnly()
+        {
+            return Cells.Any(c => c.Value.Status == ExcelCellStatus.Modified);
+        }
         public bool IsModified()
         {
             return Cells.Any(c => c.Value.Status != ExcelCellStatus.None);
@@ -41,7 +44,19 @@ namespace ExcelMerge
         {
             get { return Cells.Count(c => c.Value.Status != ExcelCellStatus.None); }
         }
-
+        public HashSet<ExcelCellDiff> BaseSrcModifiedCells
+        {
+            get
+            {
+                var ret = new HashSet<ExcelCellDiff>();
+                foreach (var cell in Cells)
+                {
+                    if (cell.Value.Status == ExcelCellStatus.Modified)
+                        ret.Add(cell.Value);
+                }
+                return ret;
+            }
+        }
 
         // TODO: Add row status field and implemnt UpdateStaus method.
     }

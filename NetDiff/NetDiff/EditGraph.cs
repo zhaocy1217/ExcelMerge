@@ -11,7 +11,7 @@ namespace NetDiff
         Diagonal,
     }
 
-    internal struct Point : IEquatable<Point>
+    public struct Point : IEquatable<Point>
     {
         public int X { get; }
         public int Y { get; }

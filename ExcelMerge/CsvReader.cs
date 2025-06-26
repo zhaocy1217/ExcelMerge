@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 using System.Text;
-
 namespace ExcelMerge
 {
     internal class CsvReader

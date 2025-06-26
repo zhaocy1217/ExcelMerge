@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CmdTest": {
+      "commandName": "Project",
+      "commandLineArgs": "D://base.xlsx D://others.xlsx D://mine.xlsx"
+    }
+  }
+}

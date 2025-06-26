@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelMerge", "ExcelMerge\ExcelMerge.csproj", "{BFF4C33C-7395-4428-8587-AA22062E4A24}"
 EndProject
@@ -24,6 +24,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDiff", "NetDiff\NetDiff\NetDiff.csproj", "{00A6267D-DDE3-42CC-9C99-9166C334053E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDiff.Test", "NetDiff\NetDiff.Test\NetDiff.Test.csproj", "{AAFA1775-1F46-4AA5-97D3-DE88D591828D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeDiff", "MergeDiff\MergeDiff.csproj", "{1AF9F10C-D313-41B5-B6CF-5C4F8C93A838}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelMergeCmd", "ExcelMergeCmd\ExcelMergeCmd.csproj", "{32E5306D-B299-4789-B731-7296AA7A32E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmdTest", "CmdTest\CmdTest.csproj", "{78CFCDB6-C38E-469E-B5C0-E069A0A6C2EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,8 +65,23 @@ Global
 		{AAFA1775-1F46-4AA5-97D3-DE88D591828D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAFA1775-1F46-4AA5-97D3-DE88D591828D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAFA1775-1F46-4AA5-97D3-DE88D591828D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AF9F10C-D313-41B5-B6CF-5C4F8C93A838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AF9F10C-D313-41B5-B6CF-5C4F8C93A838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AF9F10C-D313-41B5-B6CF-5C4F8C93A838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AF9F10C-D313-41B5-B6CF-5C4F8C93A838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32E5306D-B299-4789-B731-7296AA7A32E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32E5306D-B299-4789-B731-7296AA7A32E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32E5306D-B299-4789-B731-7296AA7A32E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32E5306D-B299-4789-B731-7296AA7A32E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78CFCDB6-C38E-469E-B5C0-E069A0A6C2EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78CFCDB6-C38E-469E-B5C0-E069A0A6C2EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78CFCDB6-C38E-469E-B5C0-E069A0A6C2EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78CFCDB6-C38E-469E-B5C0-E069A0A6C2EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D1CCBD5-A098-4E7E-90A9-37163CA19778}
 	EndGlobalSection
 EndGlobal

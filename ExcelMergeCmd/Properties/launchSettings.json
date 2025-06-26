@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExcelMergeCmd": {
+      "commandName": "Project",
+      "commandLineArgs": "-p=D://test_base.xlsx -c=D://test.xlsx -sheets=Sheet1"
+    }
+  }
+}
